@@ -2,8 +2,8 @@ import React from "react";
 import { NavLink, Link} from "react-router-dom";
 import Button from "../components/ui/Button";
 import Car from "../assets/car.webp";
-import User from "../assets/user.png";
 
+import User from "../assets/User.png";
 
 const Home = () => {
   return (
