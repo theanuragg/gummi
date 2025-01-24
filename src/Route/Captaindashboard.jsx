@@ -47,11 +47,10 @@
 
 // export default CaptainDashboard;
 
-import React, { useState } from 'react';
-import Avatar from 'react-nice-avatar';
+import React, { useState } from "react";
+import Avatar from "react-nice-avatar";
 
 const CaptainDashboard = () => {
-
   // State for avatar customization
   const [selectedFaceColor, setSelectedFaceColor] = useState("f5c6d0");
   const [selectedEarSize, setSelectedEarSize] = useState("small");
@@ -59,54 +58,70 @@ const CaptainDashboard = () => {
   const [selectedShirt, setSelectedShirt] = useState("v-neck");
   const [selectedEyeShape, setSelectedEyeShape] = useState("square");
   const [selectedAccessories, setSelectedAccessories] = useState("sunglasses");
+
+  // State for nickname and conditional updates
+  const [nickname, setNickname] = useState("");
+  const [tempNickname, setTempNickname] = useState(""); // To hold the value before submitting
+
+  // State for toggling notifications card
   const [isOpen, setIsOpen] = useState(false);
 
-  // Function to toggle the card open/close
-
-
-  const [nickname, setNickname] = useState("");
-
-  const handleNicknameChange = (e) => {
-    setNickname(e.target.value);
-  };
-
+  // Toggle notification card
   const toggleCard = () => {
     setIsOpen(!isOpen);
   };
 
-  return (
+  // Handle nickname input change
+  const handleNicknameInput = (e) => {
+    setTempNickname(e.target.value);
+  };
 
-    <div className="min-h-screen bg-white p-6">
+  // Update nickname when submitted
+  const handleNicknameSubmit = () => {
+    setNickname(tempNickname);
+  };
+
+  return (
+    <div className="min-h-screen bg-white p-6 relative">
+      {/* Header */}
       <header className="flex justify-end">
-        <button className="p-2 bg-gray-200 rounded-full"
+        <button
+          className="p-2 bg-gray-200 rounded-full"
           onClick={toggleCard}
         >
-          <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <svg
+            className="w-6 h-6 text-gray-800 dark:text-white"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
             <path d="M17.133 12.632v-1.8a5.407 5.407 0 0 0-4.154-5.262.955.955 0 0 0 .021-.106V3.1a1 1 0 0 0-2 0v2.364a.933.933 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C6.867 15.018 5 15.614 5 16.807 5 17.4 5 18 5.538 18h12.924C19 18 19 17.4 19 16.807c0-1.193-1.867-1.789-1.867-4.175Zm-13.267-.8a1 1 0 0 1-1-1 9.424 9.424 0 0 1 2.517-6.391A1.001 1.001 0 1 1 6.854 5.8a7.43 7.43 0 0 0-1.988 5.037 1 1 0 0 1-1 .995Zm16.268 0a1 1 0 0 1-1-1A7.431 7.431 0 0 0 17.146 5.8a1 1 0 0 1 1.471-1.354 9.424 9.424 0 0 1 2.517 6.391 1 1 0 0 1-1 .995ZM8.823 19a3.453 3.453 0 0 0 6.354 0H8.823Z" />
           </svg>
-          {isOpen ? "" : ""}
         </button>
       </header>
+
+      {/* Notification Card */}
       {isOpen && (
-        <div
-          className="absolute top-1/4 bg-white rounded-lg shadow-lg p-4 space-y-4 w-80"
-        >
-          {[...Array(6)].map((_, index) => (
+        <div className="absolute top-16 right-14 bg-white rounded-lg shadow-lg p-4 space-y-4 w-80 max-h-96 overflow-y-scroll">
+          {[...Array(7)].map((_, index) => (
             <div
               key={index}
               className="p-4 bg-gray-100 rounded-md shadow hover:bg-gray-200"
             >
-              someone visit your profile
+              someone {index + 1} viewed your profile
             </div>
           ))}
         </div>
       )}
 
-
+      {/* Main Content */}
       <main className="max-w-5xl mx-auto mt-8">
         {/* Profile Section */}
         <div className="flex items-center gap-12 mb-10">
-          <div className="w-20 h-20  rounded-full">
+          <div className="w-20 h-20 rounded-full">
             <Avatar
               style={{ width: 100, height: 100 }}
               faceColor={selectedFaceColor}
@@ -121,22 +136,32 @@ const CaptainDashboard = () => {
             <label htmlFor="nickname" className="block font-medium">
               Nickname
             </label>
-            <input
-              id="nickname"
-              type="text"
-              value={nickname}
-              onChange={handleNicknameChange}
-              placeholder="Enter your nickname"
-              className="w-full p-2 border rounded-lg"
-            />
+            <div className="flex gap-2">
+              <input
+                id="nickname"
+                type="text"
+                value={tempNickname}
+                onChange={handleNicknameInput}
+                placeholder="Enter your nickname"
+                className="w-full p-2 border rounded-lg"
+              />
+              <button
+                onClick={handleNicknameSubmit}
+                className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+              >
+                Update
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Welcome Section */}
-        <h1 className="text-4xl font-bold mb-6">Welcome to Your Guider Dashboard</h1>
+        <h1 className="text-4xl font-bold mb-6">
+          {nickname ? `Welcome, ${nickname}` : 'Welcome to Your Guider Dashboard'}
+        </h1>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 ">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="bg-white shadow p-4 rounded-lg text-center border border-gray-400 hover:bg-slate-50">
             <h2 className="text-lg font-medium">Total Trips</h2>
             <p className="text-2xl font-bold">24</p>
@@ -152,7 +177,7 @@ const CaptainDashboard = () => {
             <p className="text-2xl font-bold">₹ 5,231</p>
             <p className="text-sm text-green-500">+15% from last month</p>
           </div>
-          <div className="bg-white shadow p-4 rounded-lg text-center border border-gray-400 hover:bg-slate-50 ">
+          <div className="bg-white shadow p-4 rounded-lg text-center border border-gray-400 hover:bg-slate-50">
             <h2 className="text-lg font-medium">Pending Requests</h2>
             <p className="text-2xl font-bold">12</p>
             <p className="text-sm text-red-500">3 require immediate action</p>
@@ -182,7 +207,4 @@ const CaptainDashboard = () => {
   );
 };
 
-
 export default CaptainDashboard;
-
-
