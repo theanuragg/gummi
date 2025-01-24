@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from "react";
-
-const ProfileDeatils = () => {
+const ProfileDeatils = ({ username, location }) => {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    // Mock API call to fetch user data
+    // Simulate fetching additional data for the selected captain
     setTimeout(() => {
       setUserData({
-        name: "anurag",
-        location: "new delhi",
-        bio: "i love to hangout with ppl who enjoyed every piece moment of life",
+        bio: "I love to hang out with people who enjoy every moment of life.",
         phone: "+919999999999",
         trips: 69,
         rating: 4.8,
@@ -20,13 +16,15 @@ const ProfileDeatils = () => {
 
   return (
     <div className="max-w-sm bg-white rounded-lg shadow-lg p-5 text-gray-800">
-      <button className="absolute top-2 right-2 text-gray-600">
+      <button
+        className="absolute top-2 right-2 text-gray-600"
+        onClick={() => setUserData(null)} // Close the profile details
+      >
         &#10005;
       </button>
       <div className="flex flex-col items-center">
         {/* Profile Picture */}
         <div className="rounded-full w-24 h-24 bg-gray-200 mb-4">
-          {/* Placeholder for Image */}
           <img
             className="w-full h-full rounded-full object-cover"
             src="https://via.placeholder.com/96"
@@ -34,8 +32,8 @@ const ProfileDeatils = () => {
           />
         </div>
         {/* Name and Location */}
-        <h2 className="text-lg font-bold">{userData?.name || "Loading..."}</h2>
-        <p className="text-sm text-gray-500">{userData?.location || "..."}</p>
+        <h2 className="text-lg font-bold">{username || "Loading..."}</h2>
+        <p className="text-sm text-gray-500">{location || "..."}</p>
         {/* Bio */}
         <p className="text-center text-sm italic mt-2">
           {userData?.bio || "Fetching user bio..."}
@@ -59,12 +57,6 @@ const ProfileDeatils = () => {
           <p className="font-semibold">{userData?.impression || "..."}</p>
           <p className="text-sm text-gray-500">Impression</p>
         </div>
-      </div>
-      {/* Reviews */}
-      <div className="mt-4">
-        <button className="text-blue-500 text-sm font-semibold">
-          Reviews &gt;
-        </button>
       </div>
     </div>
   );

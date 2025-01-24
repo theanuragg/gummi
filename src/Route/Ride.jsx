@@ -3,6 +3,8 @@ import axios from "axios";
 import Map from "../Maps/Map";
 import Search from '../components/ui/Search';
 import Button from "../components/ui/Button";
+import Avatars from '../components/ui/Avators';
+import ProfileDeatils from "../components/ui/ProfileDeatils";
 
 const Ride = () => {
   const [location, setLocation] = useState(""); // To hold user-entered location
@@ -10,6 +12,15 @@ const Ride = () => {
   const [loading, setLoading] = useState(false); // To indicate loading state
   const [error, setError] = useState(""); // To handle errors
   const [showResults, setShowResults] = useState(false); // To control visibility of results
+  const [selectedCaptain, setSelectedCaptain] = useState(null); // To hold the selected captain
+
+  const userData = {
+    bio: "I love to hang out with people who enjoy every moment of life.",
+    phone: "+919999999999",
+    trips: 69,
+    rating: 4.8,
+    impression: "96.7%",
+  };
 
   const fetchCaptains = async () => {
     setLoading(true);
@@ -43,6 +54,11 @@ const Ride = () => {
     }
   };
 
+  const handleCaptainClick = (captain) => {
+    setSelectedCaptain(captain); // Set the clicked captain as the selected one
+  };
+
+
   return (
     <>
       <div className="relative h-screen">
@@ -60,7 +76,7 @@ const Ride = () => {
         {showResults && (
           <div className="absolute top-20 left-4 bg-white w-60 rounded-lg shadow-lg p-4 z-10">
             <div className="text-center text-gray-500 font-medium mb-4">
-               guides available for rent<br />
+              guides available for rent<br />
             </div>
             <div className="space-y-2 max-h-64 overflow-y-scroll">
               {captains.length > 0 ? (
@@ -68,6 +84,7 @@ const Ride = () => {
                   <div
                     key={captain._id}
                     className="border rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow"
+                    onClick={() => handleCaptainClick(captain)}
                   >
                     <h2 className="font-bold text-gray-800">{captain.username}</h2>
                     <p className="text-sm text-gray-600">{captain.location}</p>
@@ -80,6 +97,50 @@ const Ride = () => {
               ) : (
                 <p className="text-center text-gray-600">No captains available</p>
               )}
+            </div>
+          </div>
+        )}
+        {selectedCaptain && (
+          <div className="absolute right-2 top-6 z-10">
+            <div className="max-w-sm bg-white rounded-lg shadow-lg p-5 text-gray-800">
+              <button
+                className="absolute top-2 right-2 text-gray-600"
+                onClick={() => setUserData(null)} // Close the profile details
+              >
+                &#10005;
+              </button>
+              <div className="flex flex-col items-center">
+                {/* Profile Picture */}
+                <div className="rounded-full w-24 h-24 bg-gray-200 mb-4">
+                  <Avatars />
+                </div>
+                {/* Name and Location */}
+                <h2 className="text-lg font-bold">{selectedCaptain.username|| "Loading..."}</h2>
+                <p className="text-sm text-gray-500">{selectedCaptain.location || "..."}</p>
+                {/* Bio */}
+                <p className="text-center text-sm italic mt-2">
+                  {userData?.bio || "Fetching user bio..."}
+                </p>
+                {/* Phone */}
+                <p className="text-sm text-gray-700 mt-2">
+                  {selectedCaptain.phoneno || "Loading phone..."}
+                </p>
+              </div>
+              {/* Metrics */}
+              <div className="flex justify-between mt-4">
+                <div className="text-center">
+                  <p className="font-semibold">{userData?.trips || "..."}</p>
+                  <p className="text-sm text-gray-500">Trips</p>
+                </div>
+                <div className="text-center">
+                  <p className="font-semibold">{userData?.rating || "..."}</p>
+                  <p className="text-sm text-gray-500">Rating</p>
+                </div>
+                <div className="text-center">
+                  <p className="font-semibold">{userData?.impression || "..."}</p>
+                  <p className="text-sm text-gray-500">Impression</p>
+                </div>
+              </div>
             </div>
           </div>
         )}
