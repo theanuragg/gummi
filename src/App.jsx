@@ -23,11 +23,11 @@ function App() {
         <Routes>
             <Route path="/Captain/login" element={<CaptainLogin />} />
             <Route path="/" element={<Home/>} />
-            <Route path="/User" element={<CaptainDashboard/>}/>
+            <Route path="/GuiderDashboard" element={<CaptainDashboard/>}/>
             <Route path="/User/login" element={<Login />} />
             <Route path='/User/Signup'  element={<SignUp/>} />
             <Route path="/Captain/Signup" element={<CaptionSignUp />} />
-            <Route path ="/Rides" element={
+            <Route path ="/Tour" element={
             <RouteProtector>
             <CaptainProctector>
               <Ride/>
