@@ -26,7 +26,7 @@ const Login =   () => {
       const data = response.data;
       setUserData(data.user);
       localStorage.setItem('token', data.token);
-      navigate("/Rides");
+      navigate("/Tour");
     }
 
     setEmail('');

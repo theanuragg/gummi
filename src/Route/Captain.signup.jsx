@@ -53,7 +53,7 @@ const CaptainSignUp = () => {
         setLocation('');
 
         // Navigate
-        navigate("/CaptainDashboard");
+        navigate('/GuiderDashboard');
       } else {
         throw new Error('Invalid response from server');
       }

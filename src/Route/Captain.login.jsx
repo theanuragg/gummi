@@ -38,7 +38,7 @@ const CaptainLogin = () => {
         setPassword('');
         
         // Navigate after successful login
-        navigate('/Rides');
+        navigate('/GuiderDashboard');
       }
     } catch (error) {
       console.error('Login failed:', error);

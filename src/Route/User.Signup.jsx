@@ -33,7 +33,7 @@ const SignUp = () => {
 
       localStorage.setItem('token', data.token);
       setUser(data.user);
-      navigate("/Rides");
+      navigate("/Tour");
     }
 
     setUsername('');

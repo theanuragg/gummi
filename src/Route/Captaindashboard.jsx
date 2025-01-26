@@ -49,8 +49,10 @@
 
 import React, { useState } from "react";
 import Avatar from "react-nice-avatar";
+import Input from "../components/ui/Input";
+import Button from "../components/ui/Button";
 
-const CaptainDashboard = () => {
+const GuiderDashboard= () => {
   // State for avatar customization
   const [selectedFaceColor, setSelectedFaceColor] = useState("f5c6d0");
   const [selectedEarSize, setSelectedEarSize] = useState("small");
@@ -145,12 +147,11 @@ const CaptainDashboard = () => {
                 placeholder="Enter your nickname"
                 className="w-full p-2 border rounded-lg"
               />
-              <button
+              <Button
                 onClick={handleNicknameSubmit}
-                className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
               >
                 Update
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -207,4 +208,4 @@ const CaptainDashboard = () => {
   );
 };
 
-export default CaptainDashboard;
+export default GuiderDashboard;
