@@ -52,7 +52,7 @@ import Avatar from "react-nice-avatar";
 import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
 
-const GuiderDashboard= () => {
+const GuiderDashboard = () => {
   // State for avatar customization
   const [selectedFaceColor, setSelectedFaceColor] = useState("f5c6d0");
   const [selectedEarSize, setSelectedEarSize] = useState("small");
@@ -186,20 +186,30 @@ const GuiderDashboard= () => {
         </div>
 
         {/* Upcoming Tours */}
-        <div className="mt-8 bg-white shadow p-4 rounded-lg">
-          <h2 className="text-lg font-medium mb-4">Upcoming Tours</h2>
-          <ul className="space-y-2">
-            <li className="flex justify-between">
-              <span>City Walking Tour</span>
-              <span>Tomorrow, 10:00 AM</span>
+
+        <div className="mt-8 bg-white shadow-lg p-6 rounded-xl border border-gray-200">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-6">Upcoming Tours</h2>
+          <ul className="space-y-4">
+            <li className="flex items-center justify-between bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+              <div>
+                <span className="text-lg font-medium text-gray-900">Purani Delhi</span>
+                <p className="text-sm text-gray-500">Discover hidden gems in the street.</p>
+              </div>
+              <span className="text-sm font-medium text-blue-600">Tomorrow, 10:00 AM</span>
             </li>
-            <li className="flex justify-between">
-              <span>Museum Guide</span>
-              <span>Jul 18, 2:00 PM</span>
+            <li className="flex items-center justify-between bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+              <div>
+                <span className="text-lg font-medium text-gray-900">Craft Museum</span>
+                <p className="text-sm text-gray-500">Explore history with a guide.</p>
+              </div>
+              <span className="text-sm font-medium text-blue-600">Jul 18, 2:00 PM</span>
             </li>
-            <li className="flex justify-between">
-              <span>Food Tasting Experience</span>
-              <span>Jul 20, 6:00 PM</span>
+            <li className="flex items-center justify-between bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+              <div>
+                <span className="text-lg font-medium text-gray-900">Food  Experience</span>
+                <p className="text-sm text-gray-500">Prelicious, Hunger strike</p>
+              </div>
+              <span className="text-sm font-medium text-blue-600">Jul 20, 6:00 PM</span>
             </li>
           </ul>
         </div>

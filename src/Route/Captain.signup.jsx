@@ -117,7 +117,8 @@ const CaptainSignUp = () => {
             onChange={(e) => setLocation(e.target.value)}
           />
 
-          <Button onClick={handleSubmit} type="submit" className="w-full"> Enter </Button>
+          <Button onClick={handleSubmit} type="submit" className="w-full"> Signup </Button>
+           <p className="text-center text-gray-500 mt-4">Already have an account? <NavLink to="/Captain/Login" className="text-blue-500">Login</NavLink></p>
         </form>
       </div>
     </div>

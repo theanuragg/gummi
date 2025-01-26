@@ -1,9 +1,8 @@
 import React from "react";
 import { NavLink, Link} from "react-router-dom";
 import Button from "../components/ui/Button";
-import Car from "../assets/car.webp";
-
-import User from "../assets/User.png";
+import Glode from '../assets/Globe.png';
+import User from '../assets/User.png';
 
 const Home = () => {
   return (
@@ -29,10 +28,10 @@ const Home = () => {
               </NavLink>
             </div>
             <div className="p-1 flex justify-center items-center">
-              <img src={Car} alt="car" className="w-40 h-40   rounded-md" />
+              <img src={Glode} alt="Glode" className="w-40 h-40   rounded-md" />
             </div>
             <div className="p-1 flex justify-center items-center">
-              <img src={User} alt="car" className="w-40 h-40  rounded-md" />
+              <img src={User} alt="User" className="w-40 h-40  rounded-md" />
             </div>
             {/* Text and Button */}
             <div>

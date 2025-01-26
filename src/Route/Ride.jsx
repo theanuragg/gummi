@@ -95,7 +95,7 @@ const Ride = () => {
               ) : error ? (
                 <p className="text-center text-red-500">{error}</p>
               ) : (
-                <p className="text-center text-gray-600">No captains available</p>
+                <p className="text-center text-gray-600">No Guider available</p>
               )}
             </div>
           </div>
